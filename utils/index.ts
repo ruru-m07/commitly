@@ -1,12 +1,12 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { promises as fs } from "fs";
 
 // Get your API key from https://makersuite.google.com/app/apikey
 if (!process.env.API_KEY) {
-  throw new Error("API_KEY environment variable is required");
+  console.log("API_KEY environment variable is required", process.env.NODE_ENV);
+  console.log("node env:- ", process.env.NODE_ENV);
 }
 
-const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.API_KEY!);
 
 export const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
