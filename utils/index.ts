@@ -11,17 +11,16 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 export const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 export const systemHistory = async () => {
-  const system = await fs.readFile(
-    process.cwd() + "/app/api/system.txt",
-    "utf8"
-  );
+
+  const systemdata = await fetch("http://localhost:3000/system.txt");
+  const systemText = await systemdata.text();
 
   return [
     {
       role: "user",
       parts: [
         {
-          text: system,
+          text: systemText,
         },
       ],
     },
