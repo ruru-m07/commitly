@@ -15,7 +15,7 @@ import React from "react";
 
 export default function Home() {
   const [chatHistory, setChatHistory] = React.useState<Content[] | []>([]);
-  const [message, setMessage] = React.useState<string>("");
+  const [message, setMessage] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState(false);
 
   const { toast } = useToast();
@@ -23,16 +23,24 @@ export default function Home() {
   const handelSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!message || message.trim() === "") {
+      toast({
+        title: "Error",
+        description: "Please enter a message",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
       setChatHistory((prevMsg) => [
         ...prevMsg,
-        { role: "user", parts: [{ text: message }] },
+        { role: "user", parts: [{ text: message! }] },
       ]);
 
       const data = await commitMessage({
-        message: message,
+        message: message!,
         history: chatHistory,
       });
 
@@ -83,8 +91,9 @@ export default function Home() {
                   placeholder="Describe your changes here..."
                   className="min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0"
                   onChange={(e) => setMessage(e.target.value)}
-                  value={message}
+                  value={message!}
                   disabled={isLoading}
+                  autoComplete="off"
                   autoFocus
                   required
                 />
