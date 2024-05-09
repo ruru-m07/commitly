@@ -1,9 +1,7 @@
 "use server";
 
 import { model, systemHistory } from "@/utils";
-import {
-  Content,
-} from "@google/generative-ai";
+import { Content } from "@google/generative-ai";
 
 export const commitMessage = async ({
   message,
@@ -12,12 +10,8 @@ export const commitMessage = async ({
   message: string;
   history: Content[];
 }) => {
-
   const chat = model.startChat({
-    history: [
-      ...await systemHistory(),
-      ...history,
-    ],
+    history: [...(await systemHistory()), ...history],
   });
 
   try {
