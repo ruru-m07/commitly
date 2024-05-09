@@ -14,10 +14,10 @@ export const systemHistory = async () => {
   const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
 
   console.log("protocol", protocol);
-  console.log("VERCEL_URL", process.env.VERCEL_URL)
+  console.log("VERCEL_URL", process.env.VERCEL_URL);
 
   const systemdata = await fetch(
-    `${protocol}://${process.env.VERCEL_URL}/system.txt`
+    `${protocol}://${process.env.VERCEL_URL}/system.txt`,
   );
   const systemText = await systemdata.text();
 

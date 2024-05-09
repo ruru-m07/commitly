@@ -18,7 +18,7 @@ const Navbar = () => {
               variant: "outline",
               size: "icon",
               className: "rounded-full w-10 h-10",
-            })
+            }),
           )}
         >
           <GitHubLogoIcon className="w-6 h-6" />
@@ -34,7 +34,7 @@ const Navbar = () => {
               variant: "outline",
               size: "icon",
               className: "rounded-full w-10 h-10",
-            })
+            }),
           )}
         />
       </div>
