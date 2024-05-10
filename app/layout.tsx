@@ -4,6 +4,12 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config/site";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { ModeToggle } from "@/components/modeToggle";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -54,7 +60,38 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <main className="mx-10 lg:mx-20">
+            <section className="h-screen">
+              <div className="w-full flex justify-end absolute top-0 right-0 items-center mr-10 mt-3 z-10">
+                <div
+                  className={cn(
+                    buttonVariants({
+                      variant: "outline",
+                      size: "icon",
+                      className: "rounded-full  w-10 h-10 overflow-hidden",
+                    })
+                  )}
+                >
+                  <Image src={'/logo.jpeg'} alt="logo" width={100} height={100} />
+                </div>
+                <Link
+                  href={"https://github.com/ruru-m07/commitly"}
+                  target="_blank"
+                  className={cn(
+                    buttonVariants({
+                      variant: "outline",
+                      size: "icon",
+                      className: "rounded-full mx-2 w-10 h-10",
+                    })
+                  )}
+                >
+                  <GitHubLogoIcon className="w-6 h-6" />
+                </Link>
+                <ModeToggle />
+              </div>
+              {children}
+            </section>
+          </main>
           <Toaster />
         </ThemeProvider>
       </body>
