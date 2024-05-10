@@ -1,28 +1,50 @@
 "use server";
 
-import { model, systemHistory } from "@/utils";
-import { Content } from "@google/generative-ai";
+import { model } from "@/utils";
 
-export const commitMessage = async ({
+export const commitChange = async ({
   message,
-  history,
 }: {
-  message: string;
-  history: Content[];
-}) => {
-  const chat = model.startChat({
-    history: [...(await systemHistory()), ...history],
-  });
+  message: string | null;
+}): Promise<{
+  data: {
+    text: string;
+  } | null;
+  error: string | null;
+}> => {
+  if (!message || message.trim() === "") {
+    return { data: null, error: "Please enter a message" };
+  }
 
   try {
-    const result = await chat.sendMessage(message);
-    const response = result.response;
+    const modelResponse = model.generateContent({
+      contents: [{ role: "user", parts: [{ text: message }] }],
+      systemInstruction: `\
+      You are an assistant that helps to provide Git commit messages based on https://www.conventionalcommits.org/en/v1.0.0/.
 
-    const text = response.text();
-    console.log("text", text);
+      - Provide a Git commit message in a code block as txt.
+      - Do not include the full command (e.g., \`git commit -m "here git message"\`).
+      - Only provide the commit message itself.
+      - Suggest 3 different commit messages to give the user some options.
+      - For example, if the user input is "I change lib folder to utils folder", then the output should be:
 
-    return { success: true, text: text };
+      \`\`\`txt refactor(lib): change lib folder to utils folder \n\`\`\`\n
+      \`\`\`txt refactor(deps): rename lib folder to utils \n\`\`\`\n
+      \`\`\`txt fix(deps): rename lib folder to utils \n\`\`\`\n
+
+      `,
+    });
+
+    const response = (await modelResponse).response.text();
+
+    return {
+      data: {
+        text: response,
+      },
+      error: null,
+    };
   } catch (error) {
-    return { success: false, error: error as string };
+    console.log("error on action", error);
+    return { data: null, error: "something went wrong!" };
   }
 };
