@@ -1,7 +1,16 @@
 {
   "name": "commitly",
-  "version": "0.1.0",
+  "description": "Tired of boring and repetitive git commit messages? Our AI bot has got you covered! Simply input your changes, and our bot will generate creative and informative commit messages for you. Say goodbye to dull commit logs and hello to engaging and descriptive messages that make your code shine.",
+  "version": "1.0.0",
   "private": true,
+  "author": {
+    "name": "ruru.dev07",
+    "email": "ruru.dev07@gmail.com",
+    "url": "https://ruru-dev07.vercel.app"
+  },
+  "repository": {
+    "url": "https://github.com/ruru-m07/commitly"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
