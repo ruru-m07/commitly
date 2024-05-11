@@ -10,6 +10,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { ModeToggle } from "@/components/modeToggle";
 import Image from "next/image";
+import NotificationBanner from "@/components/notificationBanner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -53,7 +54,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-primary-foreground/35 `}>
+      <body className={`${inter.className}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -72,7 +73,20 @@ export default function RootLayout({
                     })
                   )}
                 >
-                  <Image src={'/logo.jpeg'} alt="logo" width={100} height={100} />
+                  <Image
+                    src={"/logo-dark.png"}
+                    alt="logo"
+                    width={50}
+                    height={50}
+                    className="dark:hidden block"
+                  />
+                  <Image
+                    src={"/logo-light.png"}
+                    alt="logo"
+                    width={50}
+                    height={50}
+                    className="dark:block hidden"
+                  />
                 </div>
                 <Link
                   href={"https://github.com/ruru-m07/commitly"}
@@ -92,6 +106,7 @@ export default function RootLayout({
               {children}
             </section>
           </main>
+          <NotificationBanner />
           <Toaster />
         </ThemeProvider>
       </body>

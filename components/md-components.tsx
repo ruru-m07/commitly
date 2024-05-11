@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { NpmCommands } from "@/types/unist";
 import { Style } from "@/components/md/styles";
 import { Event } from "@/lib/events";
-import { CopyButton, CopyNpmCommandButton } from "@/components/md/copy-button";
+import { CopyButton } from "@/components/md/copy-button";
 import { CodeBlockWrapper } from "@/components/md/code-block-wrapper";
 import Image from "next/image";
 import { StyleWrapper } from "@/components/md/style-wrapper";
@@ -17,16 +17,12 @@ import { coldarkDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { remark } from "remark";
 import rehypeKatex from "rehype-katex";
 
-const customStyle = {
-  backgroundColor: "#18181b",
-};
-
 const components = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
         "group font-heading mt-2 scroll-m-20 text-4xl font-bold",
-        className,
+        className
       )}
       {...props}
     />
@@ -35,7 +31,7 @@ const components = {
     <h2
       className={cn(
         "group font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
-        className,
+        className
       )}
       {...props}
     />
@@ -44,7 +40,7 @@ const components = {
     <h3
       className={cn(
         "group font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
-        className,
+        className
       )}
       {...props}
     />
@@ -53,7 +49,7 @@ const components = {
     <h4
       className={cn(
         "group font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
-        className,
+        className
       )}
       {...props}
     />
@@ -62,7 +58,7 @@ const components = {
     <h5
       className={cn(
         "group mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
-        className,
+        className
       )}
       {...props}
     />
@@ -71,7 +67,7 @@ const components = {
     <h6
       className={cn(
         "group mt-8 scroll-m-20 text-base font-semibold tracking-tight",
-        className,
+        className
       )}
       {...props}
     />
@@ -129,7 +125,7 @@ const components = {
     <th
       className={cn(
         "border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
-        className,
+        className
       )}
       {...props}
     />
@@ -138,7 +134,7 @@ const components = {
     <td
       className={cn(
         "border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
-        className,
+        className
       )}
       {...props}
     />
@@ -166,8 +162,8 @@ const components = {
       <StyleWrapper styleName={__style__}>
         <pre
           className={cn(
-            "mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 p- dark:bg-zinc-900",
-            className,
+            "mb-4 mt-6 max-h-[650px] shadow overflow-x-auto rounded-lg border bg-primary-foreground/70 font-semibold",
+            className
           )}
           {...props}
         />
@@ -180,21 +176,6 @@ const components = {
             className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
           />
         )}
-
-        {__npmCommand__ &&
-          __yarnCommand__ &&
-          __pnpmCommand__ &&
-          __bunCommand__ && (
-            <CopyNpmCommandButton
-              commands={{
-                __npmCommand__,
-                __yarnCommand__,
-                __pnpmCommand__,
-                __bunCommand__,
-              }}
-              className={cn("absolute right-4 top-4", __withMeta__ && "top-16")}
-            />
-          )}
       </StyleWrapper>
     );
   },
@@ -203,24 +184,22 @@ const components = {
     const match = /language-(\w+)/.exec(className || "");
 
     const language = match ? match[1] : null;
-    const modifier = match ? match[2] : null;
     const value = String(children).replace(/\n$/, "");
+
+    const customStyle = {
+      backgroundColor: "var(--primary-foreground) / 0.05",
+    };
 
     return match ? (
       <div className="relative">
-        <code
-          className={cn(
-            "relative rounded bg-muted font-mono text-sm",
-            className,
-          )}
-        >
+        <code className={cn("relative rounded text-sm", className)}>
           <SyntaxHighlighter
             {...rest}
             PreTag="div"
             customStyle={customStyle}
             language={language}
             style={coldarkDark}
-            showLineNumbers={modifier === "showLineNumbers"}
+            codeTagProps={language === "txt" && { className: "dark:text-white text-black font-bold" }}
           >
             {value}
           </SyntaxHighlighter>
@@ -230,8 +209,8 @@ const components = {
     ) : (
       <code
         className={cn(
-          "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm",
-          className,
+          "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-semibold text-sm",
+          className
         )}
         {...props}
       />

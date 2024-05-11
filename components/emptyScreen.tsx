@@ -2,50 +2,47 @@
 
 import Image from "next/image";
 import React from "react";
-import suggestionsData from "./suggestions.json";
-import { Card } from "./ui/card";
+import data from "./data.json";
+import { Card, CardHeader } from "./ui/card";
 
 const EmptyScreen = ({
   onSubmit,
 }: {
   onSubmit: ({ suggestion }: { suggestion: string }) => void;
 }) => {
-  const messages: string[] = [
-    "Commit something awesome!",
-    "Let's craft some clever commits!",
-    "Your commit history starts here...",
-    "Type away and witness the magic!",
-    "Time to make your commits shine!",
-  ];
+  const randomMessage =
+    data.messages[Math.floor(Math.random() * data.messages.length)];
 
-  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-
-  const randomSuggestions = suggestionsData.messages
-    .sort(() => 0.5 - Math.random()) // Shuffle the array
-    .slice(0, 3); // Get the first 3 elements
+  const randomSuggestions = data.suggestions
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 4);
 
   return (
     <div className="h-full w-full flex justify-center  ">
-      <div className="grid place-items-center">
+      <div className="flex flex-col justify-center items-center">
         <Image
           src={"/logo-light.png"}
           alt="logo"
-          width={150}
-          height={150}
+          width={200}
+          height={200}
           className="dark:block hidden"
+          priority
         />
         <Image
           src={"/logo-dark.png"}
           alt="logo"
-          width={150}
-          height={150}
+          width={200}
+          height={200}
           className="dark:hidden block"
+          priority
         />
-        <h1 className="font-bold text-center">{randomMessage}</h1>
-        <div className="flex justify-between items-cente mx-2">
+        <CardHeader className="font-bold text-center text-lg">
+          {randomMessage}
+        </CardHeader>
+        <div className="grid grid-cols-2 gap-3 mx-14 mt-4">
           {randomSuggestions.map((suggestion, index) => (
             <Card
-              className="m-2 p-4 flex justify-center items-center w-1/3 cursor-pointer hover:border-primary hover:bg-primary-foreground/35"
+              className="p-4 flex items-center w-full rounded-lg cursor-pointer hover:border-primary hover:bg-primary-foreground"
               key={index}
               onClick={() => onSubmit({ suggestion })}
             >
