@@ -61,15 +61,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="mx-10 lg:mx-20">
+          <main className="mx-0 xl:mx-20">
             <section className="h-screen">
-              <div className="w-full flex justify-end absolute top-0 right-0 items-center mr-10 mt-3 z-10">
+              <div className="w-full flex justify-end absolute top-3 right-0 items-center mr-7 md:mr-10 mt-3 overflow-hidden z-10">
                 <div
                   className={cn(
                     buttonVariants({
                       variant: "outline",
                       size: "icon",
-                      className: "rounded-full  w-10 h-10 overflow-hidden",
+                      className: "rounded-full w-10 h-10 overflow-hidden sm:block hidden",
                     })
                   )}
                 >
@@ -95,7 +95,7 @@ export default function RootLayout({
                     buttonVariants({
                       variant: "outline",
                       size: "icon",
-                      className: "rounded-full mx-2 w-10 h-10",
+                      className: "rounded-full mx-2 w-10 h-10 sm:flex hidden",
                     })
                   )}
                 >

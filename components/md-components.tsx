@@ -199,7 +199,11 @@ const components = {
             customStyle={customStyle}
             language={language}
             style={coldarkDark}
-            codeTagProps={language === "txt" && { className: "dark:text-white text-black font-bold" }}
+            codeTagProps={
+              language === "txt" && {
+                className: "dark:text-white text-black font-bold",
+              }
+            }
           >
             {value}
           </SyntaxHighlighter>

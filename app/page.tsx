@@ -95,7 +95,7 @@ export default function Home() {
   return (
     <div className=" h-full py-10 flex items-center justify-center">
       <ScrollArea className="h-screen w-full">
-        <div className=" flex h-screen mx-0 sm:mx-10 lg:mx-60 flex-col p-4 lg:col-span-2">
+        <div className=" flex h-screen mx-0 lg:mx-48 xl:mx-60 flex-col p-4 lg:col-span-2">
           <div className="w-full h-5/6 mb-2 flex  items-end">
             <Card className="h-full w-full py-4 flex justify-center items-center bg-primary-foreground/25">
               <ScrollArea className=" flex justify-center items-center">
