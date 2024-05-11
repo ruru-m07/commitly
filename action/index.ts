@@ -37,6 +37,14 @@ export const commitChange = async ({
 
     const response = (await modelResponse).response.text();
 
+    console.log({
+      message: message,
+      response: response,
+      data: {
+        time: new Date().toISOString(),
+      },
+    });
+
     return {
       data: {
         text: response,

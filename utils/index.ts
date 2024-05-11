@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-export const runtime = 'edge';
+export const runtime = "node";
 
 // Get your API key from https://makersuite.google.com/app/apikey
 if (!process.env.API_KEY) {
@@ -10,4 +10,6 @@ if (!process.env.API_KEY) {
 
 const genAI = new GoogleGenerativeAI(process.env.API_KEY!);
 
-export const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
+export const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-pro-latest",
+});
