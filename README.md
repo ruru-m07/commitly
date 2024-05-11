@@ -44,4 +44,4 @@
 
 ## 😆 Feedback:
 
-- Your feedback is valuable to us. Please share your thoughts and suggestions on how we can make Commitly better.
+- Your feedback is valuable to us. Please share your thoughts and suggestions on how we can make Commitly better. [Feedback](https://github.com/ruru-m07/commitly/discussions/16)
