@@ -149,7 +149,7 @@ export default function Home() {
                 disabled={isLoading}
               >
                 {isLoading && <Spinner className="size-4" />}
-                Send Message
+                  Generate
                 <CornerDownLeft className="size-3.5" />
               </Button>
             </div>
