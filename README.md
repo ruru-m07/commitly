@@ -13,7 +13,7 @@
 - 📈 Improves the quality of your git history
 - ⏰ Saves you time and effort
 
-## How to Use Commitly
+## 🤔 How to Use Commitly
 
 1. Visit the [Commitly](https://commitly.vercel.app/) website.
 2. Paste your code changes into the text box.
@@ -29,7 +29,7 @@
 
 ## ☘️ Contributing:
 
-- Contributions are welcome! 💖 Please read the [contributing guidelines](https://github.com/ruru-m07/commitly/blob/issue-13/CONTRIBUTING.md) before submitting a pull request.
+- Contributions are welcome! 💖 Please read the [contributing guidelines](https://github.com/ruru-m07/commitly/blob/main/CONTRIBUTING.md) before submitting a pull request.
 
 ## 🚀 Getting Started for Developers:
 
@@ -40,7 +40,7 @@
 
 ## ✅ License:
 
-- [MIT](https://github.com/ruru-m07/commitly/blob/issue-13/LICENSE)
+- [MIT](https://github.com/ruru-m07/commitly/blob/main/LICENSE)
 
 ## 😆 Feedback:
 
