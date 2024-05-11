@@ -14,6 +14,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import ListSuggestion from "@/components/listSuggestion";
 import Loader from "@/components/loader";
+import { Spinner } from "@/components/ui/spinner";
 
 const EmptyScreen = dynamic(() => import("@/components/emptyScreen"), {
   ssr: false,
@@ -93,28 +94,30 @@ export default function Home() {
 
   return (
     <div className=" h-full py-10 flex items-center justify-center">
-      <ScrollArea className="h-screen  w-full">
+      <ScrollArea className="h-screen w-full">
         <div className=" flex h-screen mx-0 sm:mx-10 lg:mx-60 flex-col p-4 lg:col-span-2">
           <div className="w-full h-5/6 mb-2 flex  items-end">
-            <Card className="h-96 w-full flex justify-center items-center bg-primary-foreground/50">
-              {error ? (
-                <div>
-                  <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-                    Oops! Something Went Wrong!{" "}
-                    <span className="ml-2"> : ( </span>
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{error}</p>
-                </div>
-              ) : isLoading ? (
-                <Loader />
-              ) : commitMessages ? (
-                <ListSuggestion
-                  suggestions={commitMessages!}
-                  commitChanges={commitChanges || ""}
-                />
-              ) : (
-                <EmptyScreen onSubmit={handelSubmit} />
-              )}
+            <Card className="h-full w-full py-4 flex justify-center items-center bg-primary-foreground/25">
+              <ScrollArea className=" flex justify-center items-center">
+                {error ? (
+                  <div>
+                    <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                      Oops! Something Went Wrong!{" "}
+                      <span className="ml-2"> : ( </span>
+                    </h3>
+                    <p className="text-sm text-muted-foreground">{error}</p>
+                  </div>
+                ) : isLoading ? (
+                  <Loader />
+                ) : commitMessages ? (
+                  <ListSuggestion
+                    suggestions={commitMessages!}
+                    commitChanges={commitChanges || ""}
+                  />
+                ) : (
+                  <EmptyScreen onSubmit={handelSubmit} />
+                )}
+              </ScrollArea>
             </Card>
           </div>
 
@@ -122,7 +125,7 @@ export default function Home() {
 
           <form
             onSubmit={(e) => submitForm(e, message)}
-            className="relative overflow-hidden rounded-lg border bg-primary-foreground/50 focus-within:ring-1 focus-within:ring-ring"
+            className="relative overflow-hidden rounded-lg border bg-primary-foreground/25 focus-within:ring-1 focus-within:ring-ring shadow"
           >
             <Label htmlFor="message" className="sr-only">
               Message
@@ -130,7 +133,7 @@ export default function Home() {
             <Input
               id="message"
               placeholder="Describe your changes here..."
-              className="min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0 bg-primary-foreground/50"
+              className="min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0"
               onChange={(e) => setMessage(e.target.value)}
               value={message || ""}
               disabled={isLoading}
@@ -142,9 +145,10 @@ export default function Home() {
               <Button
                 type="submit"
                 size="sm"
-                className="ml-auto gap-1.5"
+                className={`ml-auto gap-1.5 ${!message && "bg-primary-foreground text-muted-foreground border cursor-not-allowed hover:bg-primary-foreground"}`}
                 disabled={isLoading}
               >
+                {isLoading && <Spinner className="size-4" />}
                 Send Message
                 <CornerDownLeft className="size-3.5" />
               </Button>
