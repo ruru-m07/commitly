@@ -98,7 +98,7 @@ export default function Home() {
         <div className=" flex h-screen mx-0 lg:mx-48 xl:mx-60 flex-col p-4 lg:col-span-2">
           <div className="w-full h-5/6 mb-2 flex  items-end">
             <Card className="h-full w-full py-4 flex justify-center items-center bg-primary-foreground/25">
-              <ScrollArea className=" flex justify-center items-center">
+              <ScrollArea className=" flex justify-center items-center w-full">
                 {error ? (
                   <div>
                     <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
@@ -108,14 +108,18 @@ export default function Home() {
                     <p className="text-sm text-muted-foreground">{error}</p>
                   </div>
                 ) : isLoading ? (
-                  <Loader />
+                  <div className="w-full flex items-center justify-center">
+                    <Loader />
+                  </div>
                 ) : commitMessages ? (
                   <ListSuggestion
                     suggestions={commitMessages!}
                     commitChanges={commitChanges || ""}
                   />
                 ) : (
-                  <EmptyScreen onSubmit={handelSubmit} />
+                  <div className="w-full flex items-center justify-center">
+                    <EmptyScreen onSubmit={handelSubmit} />
+                  </div>
                 )}
               </ScrollArea>
             </Card>
