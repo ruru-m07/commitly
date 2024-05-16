@@ -9,7 +9,7 @@ const ListSuggestion = ({
   commitChanges: string;
 }) => {
   return (
-    <div className="w-fit mx-4 md:mx-10">
+    <div className="mx-4 md:mx-10">
       <h1 className="text-xl font-bold">{commitChanges}</h1>
       <MarkdownReader markdown={suggestions} />
     </div>
