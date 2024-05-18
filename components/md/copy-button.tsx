@@ -39,10 +39,7 @@ export function CopyButton({
     <Button
       size="icon"
       variant="ghost"
-      className={cn(
-        "relative z-10 h-6 w-6 bg-card border",
-        className,
-      )}
+      className={cn("relative z-10 h-6 w-6 bg-card border", className)}
       onClick={() => {
         copyToClipboardWithMeta(
           value,

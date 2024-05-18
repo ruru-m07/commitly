@@ -13,7 +13,7 @@ const ListSuggestion = ({
   commitChanges: string;
   submitForm: (
     e: React.FormEvent<HTMLFormElement>,
-    message: string | null
+    message: string | null,
   ) => void;
 }) => {
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
