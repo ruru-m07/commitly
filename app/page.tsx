@@ -115,6 +115,7 @@ export default function Home() {
                   <ListSuggestion
                     suggestions={commitMessages!}
                     commitChanges={commitChanges || ""}
+                    submitForm={submitForm}
                   />
                 ) : (
                   <div className="w-full flex items-center justify-center">
