@@ -43,15 +43,17 @@ const EmptyScreen = ({
           {randomMessage}
         </CardHeader>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mx-3 sm:mx-14 mt-4">
-          {randomSuggestions.slice(0, suggestionCount).map((suggestion, index) => (
-            <Card
-              className="p-4 flex items-center w-full rounded-lg cursor-pointer hover:border-primary hover:bg-primary-foreground"
-              key={index}
-              onClick={() => onSubmit({ suggestion })}
-            >
-              <p className="text-sm ">{suggestion}</p>
-            </Card>
-          ))}
+          {randomSuggestions
+            .slice(0, suggestionCount)
+            .map((suggestion, index) => (
+              <Card
+                className="p-4 flex items-center w-full rounded-lg cursor-pointer hover:border-primary hover:bg-primary-foreground"
+                key={index}
+                onClick={() => onSubmit({ suggestion })}
+              >
+                <p className="text-sm ">{suggestion}</p>
+              </Card>
+            ))}
         </div>
       </div>
     </div>

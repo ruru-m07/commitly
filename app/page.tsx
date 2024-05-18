@@ -27,7 +27,7 @@ export default function Home() {
   const [error, setError] = React.useState<string | null>(null);
   const [commitChanges, setcommitChanges] = React.useState<string | null>(null);
   const [commitMessages, setcommitMessages] = React.useState<string | null>(
-    null
+    null,
   );
 
   const { toast } = useToast();
@@ -62,7 +62,7 @@ export default function Home() {
                 toastVariants({
                   variant: "destructive",
                   className: "w-fit m-0 p-2 text-xs hover:bg-[#815305]/35",
-                })
+                }),
               )}
               onClick={() => handelSubmit({ suggestion })}
             >
@@ -86,7 +86,7 @@ export default function Home() {
 
   const submitForm = (
     e: React.FormEvent<HTMLFormElement>,
-    message: string | null
+    message: string | null,
   ): void => {
     e.preventDefault();
     handelSubmit({ suggestion: message || "" });
@@ -115,6 +115,7 @@ export default function Home() {
                   <ListSuggestion
                     suggestions={commitMessages!}
                     commitChanges={commitChanges || ""}
+                    submitForm={submitForm}
                   />
                 ) : (
                   <div className="w-full flex items-center justify-center">
@@ -153,7 +154,7 @@ export default function Home() {
                 disabled={isLoading}
               >
                 {isLoading && <Spinner className="size-4" />}
-                  Generate
+                Generate
                 <CornerDownLeft className="size-3.5" />
               </Button>
             </div>

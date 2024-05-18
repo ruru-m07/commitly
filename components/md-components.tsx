@@ -22,7 +22,7 @@ const components = {
     <h1
       className={cn(
         "group font-heading mt-2 scroll-m-20 text-4xl font-bold",
-        className
+        className,
       )}
       {...props}
     />
@@ -31,7 +31,7 @@ const components = {
     <h2
       className={cn(
         "group font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
-        className
+        className,
       )}
       {...props}
     />
@@ -40,7 +40,7 @@ const components = {
     <h3
       className={cn(
         "group font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -49,7 +49,7 @@ const components = {
     <h4
       className={cn(
         "group font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -58,7 +58,7 @@ const components = {
     <h5
       className={cn(
         "group mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -67,7 +67,7 @@ const components = {
     <h6
       className={cn(
         "group mt-8 scroll-m-20 text-base font-semibold tracking-tight",
-        className
+        className,
       )}
       {...props}
     />
@@ -125,7 +125,7 @@ const components = {
     <th
       className={cn(
         "border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
-        className
+        className,
       )}
       {...props}
     />
@@ -134,7 +134,7 @@ const components = {
     <td
       className={cn(
         "border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
-        className
+        className,
       )}
       {...props}
     />
@@ -163,7 +163,7 @@ const components = {
         <pre
           className={cn(
             "mb-4 mt-6 max-h-[650px] shadow overflow-x-auto rounded-lg border bg-primary-foreground/70 font-semibold",
-            className
+            className,
           )}
           {...props}
         />
@@ -214,7 +214,7 @@ const components = {
       <code
         className={cn(
           "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-semibold text-sm",
-          className
+          className,
         )}
         {...props}
       />

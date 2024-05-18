@@ -69,8 +69,9 @@ export default function RootLayout({
                     buttonVariants({
                       variant: "outline",
                       size: "icon",
-                      className: "rounded-full w-10 h-10 overflow-hidden sm:block hidden",
-                    })
+                      className:
+                        "rounded-full w-10 h-10 overflow-hidden sm:block hidden",
+                    }),
                   )}
                 >
                   <Image
@@ -96,7 +97,7 @@ export default function RootLayout({
                       variant: "outline",
                       size: "icon",
                       className: "rounded-full mx-2 w-10 h-10 sm:flex hidden",
-                    })
+                    }),
                   )}
                 >
                   <GitHubLogoIcon className="w-6 h-6" />
