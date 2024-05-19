@@ -15,6 +15,7 @@ import dynamic from "next/dynamic";
 import ListSuggestion from "@/components/listSuggestion";
 import Loader from "@/components/loader";
 import { Spinner } from "@/components/ui/spinner";
+import { Switch } from "@/components/ui/switch";
 
 const EmptyScreen = dynamic(() => import("@/components/emptyScreen"), {
   ssr: false,
@@ -26,8 +27,9 @@ export default function Home() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [commitChanges, setcommitChanges] = React.useState<string | null>(null);
+  const [isEmojiSupport, setIsEmojiSupport] = React.useState<boolean>(false);
   const [commitMessages, setcommitMessages] = React.useState<string | null>(
-    null,
+    null
   );
 
   const { toast } = useToast();
@@ -48,6 +50,7 @@ export default function Home() {
     try {
       const { data, error } = await commitChange({
         message: suggestion,
+        isEmojiSupport: isEmojiSupport,
       });
 
       if (error) {
@@ -62,7 +65,7 @@ export default function Home() {
                 toastVariants({
                   variant: "destructive",
                   className: "w-fit m-0 p-2 text-xs hover:bg-[#815305]/35",
-                }),
+                })
               )}
               onClick={() => handelSubmit({ suggestion })}
             >
@@ -73,6 +76,7 @@ export default function Home() {
       } else {
         if (data) {
           setcommitMessages(data.text);
+          console.log(data.text)
           setcommitChanges(suggestion);
           setMessage("");
         }
@@ -86,7 +90,7 @@ export default function Home() {
 
   const submitForm = (
     e: React.FormEvent<HTMLFormElement>,
-    message: string | null,
+    message: string | null
   ): void => {
     e.preventDefault();
     handelSubmit({ suggestion: message || "" });
@@ -100,7 +104,7 @@ export default function Home() {
             <Card className="h-full w-full py-4 flex justify-center items-center bg-primary-foreground/25">
               <ScrollArea className=" flex justify-center items-center w-full">
                 {error ? (
-                  <div>
+                  <div className="w-full flex items-center justify-center">
                     <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                       Oops! Something Went Wrong!{" "}
                       <span className="ml-2"> : ( </span>
@@ -147,6 +151,13 @@ export default function Home() {
               required
             />
             <div className="flex items-center p-3 pt-0">
+              <div className="flex items-center space-x-2">
+                <Switch
+                  onCheckedChange={(e) => setIsEmojiSupport(e)}
+                  id="emoji-mode"
+                />
+                <Label htmlFor="emoji-mode">Emoji Mode</Label>
+              </div>
               <Button
                 type="submit"
                 size="sm"
