@@ -30,6 +30,7 @@ export const commitChange = async ({
     console.log({
       message: message,
       response: responseText,
+      isEmojiSupport: isEmojiSupport,
       data: {
         time: new Date().toISOString(),
       },
