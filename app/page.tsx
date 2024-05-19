@@ -150,7 +150,10 @@ export default function Home() {
               <Button
                 type="submit"
                 size="sm"
-                className={`ml-auto gap-1.5 ${!message && "bg-primary-foreground text-muted-foreground border cursor-not-allowed hover:bg-primary-foreground"}`}
+                className={cn("ml-auto gap-1.5", {
+                  "bg-primary-foreground text-muted-foreground border cursor-not-allowed hover:bg-primary-foreground":
+                    !message || isLoading,
+                })}
                 disabled={isLoading}
               >
                 {isLoading && <Spinner className="size-4" />}
