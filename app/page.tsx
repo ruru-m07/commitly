@@ -16,6 +16,11 @@ import ListSuggestion from "@/components/listSuggestion";
 import Loader from "@/components/loader";
 import { Spinner } from "@/components/ui/spinner";
 import { Switch } from "@/components/ui/switch";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const EmptyScreen = dynamic(() => import("@/components/emptyScreen"), {
   ssr: false,
@@ -34,12 +39,18 @@ export default function Home() {
 
   const { toast } = useToast();
 
-  const handelSubmit = async ({ suggestion }: { suggestion: string }) => {
-    if (suggestion === commitChanges) {
+  const handelSubmit = async ({
+    suggestion,
+    force = false,
+  }: {
+    suggestion: string;
+    force?: boolean;
+  }) => {
+    if (!force && suggestion === commitChanges) {
       toast({
         variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "error: Please enter a different message.",
+        title: "Duplicate Message",
+        description: "Please enter a different message.",
       });
       return;
     }
@@ -76,7 +87,7 @@ export default function Home() {
       } else {
         if (data) {
           setcommitMessages(data.text);
-          console.log(data.text)
+          console.log(data.text);
           setcommitChanges(suggestion);
           setMessage("");
         }
@@ -120,6 +131,7 @@ export default function Home() {
                     suggestions={commitMessages!}
                     commitChanges={commitChanges || ""}
                     submitForm={submitForm}
+                    forceSubmit={handelSubmit}
                   />
                 ) : (
                   <div className="w-full flex items-center justify-center">
