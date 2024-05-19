@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
@@ -12,8 +11,6 @@ import { ModeToggle } from "@/components/modeToggle";
 import Image from "next/image";
 import NotificationBanner from "@/components/notificationBanner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -55,7 +52,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -93,6 +90,7 @@ export default function RootLayout({
                   </div>
                   <Link
                     href={"https://github.com/ruru-m07/commitly"}
+                    aria-label="Github"
                     target="_blank"
                     className={cn(
                       buttonVariants({
