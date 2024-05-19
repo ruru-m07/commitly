@@ -11,6 +11,7 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { ModeToggle } from "@/components/modeToggle";
 import Image from "next/image";
 import NotificationBanner from "@/components/notificationBanner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -61,54 +62,56 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="mx-0 xl:mx-20">
-            <section className="h-screen">
-              <div className="w-full flex justify-end absolute top-3 right-0 items-center mr-7 md:mr-10 mt-3 overflow-hidden z-10">
-                <div
-                  className={cn(
-                    buttonVariants({
-                      variant: "outline",
-                      size: "icon",
-                      className:
-                        "rounded-full w-10 h-10 overflow-hidden sm:block hidden",
-                    }),
-                  )}
-                >
-                  <Image
-                    src={"/logo-dark.png"}
-                    alt="logo"
-                    width={50}
-                    height={50}
-                    className="dark:hidden block"
-                  />
-                  <Image
-                    src={"/logo-light.png"}
-                    alt="logo"
-                    width={50}
-                    height={50}
-                    className="dark:block hidden"
-                  />
+          <TooltipProvider>
+            <main className="mx-0 xl:mx-20">
+              <section className="h-screen">
+                <div className="w-full flex justify-end absolute top-3 right-0 items-center mr-7 md:mr-10 mt-3 overflow-hidden z-10">
+                  <div
+                    className={cn(
+                      buttonVariants({
+                        variant: "outline",
+                        size: "icon",
+                        className:
+                          "rounded-full w-10 h-10 overflow-hidden sm:block hidden",
+                      })
+                    )}
+                  >
+                    <Image
+                      src={"/logo-dark.png"}
+                      alt="logo"
+                      width={50}
+                      height={50}
+                      className="dark:hidden block"
+                    />
+                    <Image
+                      src={"/logo-light.png"}
+                      alt="logo"
+                      width={50}
+                      height={50}
+                      className="dark:block hidden"
+                    />
+                  </div>
+                  <Link
+                    href={"https://github.com/ruru-m07/commitly"}
+                    target="_blank"
+                    className={cn(
+                      buttonVariants({
+                        variant: "outline",
+                        size: "icon",
+                        className: "rounded-full mx-2 w-10 h-10 sm:flex hidden",
+                      })
+                    )}
+                  >
+                    <GitHubLogoIcon className="w-6 h-6" />
+                  </Link>
+                  <ModeToggle />
                 </div>
-                <Link
-                  href={"https://github.com/ruru-m07/commitly"}
-                  target="_blank"
-                  className={cn(
-                    buttonVariants({
-                      variant: "outline",
-                      size: "icon",
-                      className: "rounded-full mx-2 w-10 h-10 sm:flex hidden",
-                    }),
-                  )}
-                >
-                  <GitHubLogoIcon className="w-6 h-6" />
-                </Link>
-                <ModeToggle />
-              </div>
-              {children}
-            </section>
-          </main>
-          <NotificationBanner />
-          <Toaster />
+                {children}
+              </section>
+            </main>
+            <NotificationBanner />
+            <Toaster />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -4,8 +4,10 @@ import { model } from "@/utils";
 
 export const commitChange = async ({
   message,
+  isEmojiSupport,
 }: {
   message: string | null;
+  isEmojiSupport: boolean;
 }): Promise<{
   data: {
     text: string;
@@ -28,9 +30,29 @@ export const commitChange = async ({
       - Suggest 3 different commit messages to give the user some options.
       - For example, if the user input is "I change lib folder to utils folder", then the output should be:
 
-      \`\`\`txt refactor(lib): change lib folder to utils folder \n\`\`\`\n
-      \`\`\`txt refactor(deps): rename lib folder to utils \n\`\`\`\n
-      \`\`\`txt fix(deps): rename lib folder to utils \n\`\`\`\n
+      ${
+        isEmojiSupport &&
+        `\
+      - Use emojis in the commit message.
+      - For emojis, you can use https://gitmoji.dev/
+      - Don't provide a description, just the commit message.
+      - For example, if the user input is "I change lib folder to utils folder", then the output should be:
+      `
+      }
+
+      ${
+        isEmojiSupport
+          ? `
+      \`\`\`txt \n ♻️ refactor(lib): change lib folder to utils folder \n\`\`\`\n
+      \`\`\`txt \n ➕ refactor(deps): rename lib folder to utils \n\`\`\`\n
+      \`\`\`txt \n ✏️ fix(deps): rename lib folder to utils \n\`\`\`\n
+          `
+          : `
+      \`\`\`txt \n refactor(lib): change lib folder to utils folder \n\`\`\`\n
+      \`\`\`txt \n refactor(deps): rename lib folder to utils \n\`\`\`\n
+      \`\`\`txt \n fix(deps): rename lib folder to utils \n\`\`\`\n
+      `
+      }
 
       `,
     });
