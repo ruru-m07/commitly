@@ -11,6 +11,7 @@ import { ModeToggle } from "@/components/modeToggle";
 import Image from "next/image";
 import NotificationBanner from "@/components/notificationBanner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: {
@@ -109,6 +110,7 @@ export default function RootLayout({
             </main>
             <NotificationBanner />
             <Toaster />
+            <Analytics/>
           </TooltipProvider>
         </ThemeProvider>
       </body>
