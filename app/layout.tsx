@@ -11,7 +11,7 @@ import { ModeToggle } from "@/components/modeToggle";
 import Image from "next/image";
 import NotificationBanner from "@/components/notificationBanner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: {
@@ -53,6 +53,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="NyaIMHJt9--uZGUgzJpGQPNcUJtVLtvaEkodqOuJ7-I"
+        />
+      </head>
       <body>
         <ThemeProvider
           attribute="class"
@@ -103,14 +109,16 @@ export default function RootLayout({
                   >
                     <GitHubLogoIcon className="w-6 h-6" />
                   </Link>
-                  <ModeToggle />
+                  <div className="mr-1">
+                    <ModeToggle />
+                  </div>
                 </div>
                 {children}
               </section>
             </main>
             <NotificationBanner />
             <Toaster />
-            <Analytics/>
+            <Analytics />
           </TooltipProvider>
         </ThemeProvider>
       </body>
