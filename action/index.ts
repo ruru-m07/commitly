@@ -28,12 +28,9 @@ export const commitChange = async ({
     const responseText = await handleModelResponse(systemInstruction, message);
 
     console.log({
+      isEmojiSupport: isEmojiSupport,
       message: message,
       response: responseText,
-      isEmojiSupport: isEmojiSupport,
-      data: {
-        time: new Date().toISOString(),
-      },
     });
 
     return {
